@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_du_an_form_inherit" model="ir.ui.view">
+        <field name="name">qldu.du_an.form.inherit</field>
+        <field name="model">qldu.du_an</field>
+        <field name="inherit_id" ref="qldu.view_du_an_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Công việc">
+                    <field name="cong_viec_ids">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="nguoi_thuc_hien_id"/>
+                            <field name="trang_thai"/>
+                            <field name="han_chot"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

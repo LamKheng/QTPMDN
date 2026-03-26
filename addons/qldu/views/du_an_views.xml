@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- View Tree cho Dự án -->
+    <record id="view_du_an_tree" model="ir.ui.view">
+        <field name="name">qldu.du_an.tree</field>
+        <field name="model">qldu.du_an</field>
+        <field name="arch" type="xml">
+            <tree string="Dự án">
+                <field name="name"/>
+                <field name="quan_ly_id"/>
+                <field name="ngay_bat_dau"/>
+                <field name="ngay_ket_thuc"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- View Form cho Dự án -->
+    <record id="view_du_an_form" model="ir.ui.view">
+        <field name="name">qldu.du_an.form</field>
+        <field name="model">qldu.du_an</field>
+        <field name="arch" type="xml">
+            <form string="Dự án">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="quan_ly_id"/>
+                        </group>
+                        <group>
+                            <field name="ngay_bat_dau"/>
+                            <field name="ngay_ket_thuc"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Mô tả">
+                            <field name="mo_ta" placeholder="Mô tả chi tiết dự án..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action cho Dự án -->
+    <record id="action_du_an" model="ir.actions.act_window">
+        <field name="name">Dự án</field>
+        <field name="res_model">qldu.du_an</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo dự án mới
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item chính -->
+    <menuitem id="menu_qldu_root" name="Quản lý dự án" sequence="10"/>
+
+    <!-- Menu Item con -->
+    <menuitem id="menu_du_an" name="Dự án" parent="menu_qldu_root" action="action_du_an" sequence="10"/>
+</odoo>

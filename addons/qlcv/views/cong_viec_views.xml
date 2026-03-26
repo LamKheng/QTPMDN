@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- View Tree cho Công việc -->
+    <record id="view_cong_viec_tree" model="ir.ui.view">
+        <field name="name">qlcv.cong_viec.tree</field>
+        <field name="model">qlcv.cong_viec</field>
+        <field name="arch" type="xml">
+            <tree string="Công việc">
+                <field name="name"/>
+                <field name="du_an_id"/>
+                <field name="nguoi_thuc_hien_id"/>
+                <field name="trang_thai"/>
+                <field name="han_chot"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- View Form cho Công việc -->
+    <record id="view_cong_viec_form" model="ir.ui.view">
+        <field name="name">qlcv.cong_viec.form</field>
+        <field name="model">qlcv.cong_viec</field>
+        <field name="arch" type="xml">
+            <form string="Công việc">
+                <header>
+                    <field name="trang_thai" widget="statusbar" statusbar_visible="can_lam,dang_lam,hoan_thanh"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="du_an_id"/>
+                            <field name="nguoi_thuc_hien_id"/>
+                        </group>
+                        <group>
+                            <field name="han_chot"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Mô tả">
+                            <field name="mo_ta" placeholder="Mô tả chi tiết công việc..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- View Kanban cho Công việc -->
+    <record id="view_cong_viec_kanban" model="ir.ui.view">
+        <field name="name">qlcv.cong_viec.kanban</field>
+        <field name="model">qlcv.cong_viec</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="trang_thai" class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="du_an_id"/>
+                <field name="nguoi_thuc_hien_id"/>
+                <field name="han_chot"/>
+                <field name="trang_thai"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_record_title">
+                                <strong><field name="name"/></strong>
+                            </div>
+                            <div>
+                                <field name="du_an_id"/>
+                            </div>
+                            <div>
+                                <field name="nguoi_thuc_hien_id"/>
+                            </div>
+                            <div class="oe_kanban_bottom_right">
+                                <field name="han_chot" widget="date"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Action cho Công việc -->
+    <record id="action_cong_viec" model="ir.actions.act_window">
+        <field name="name">Công việc</field>
+        <field name="res_model">qlcv.cong_viec</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo công việc mới
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item chính -->
+    <menuitem id="menu_qlcv_root" name="Quản lý công việc" sequence="20"/>
+
+    <!-- Menu Item con -->
+    <menuitem id="menu_cong_viec" name="Công việc" parent="menu_qlcv_root" action="action_cong_viec" sequence="10"/>
+</odoo>
